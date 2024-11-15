@@ -1,0 +1,138 @@
+﻿.container {
+    padding: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+    font-family: Arial, sans-serif;
+    display: flex;
+    flex-direction: row;
+    gap: 30px;
+    position: relative;
+}
+
+.title {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.addItemContainerBottomRight {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background-color: #ffffff;
+    padding: 15px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    display: flex;
+    gap: 10px;
+}
+
+.input {
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.addButton {
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.addButton:disabled {
+    background-color: #6c757d;
+    cursor: not-allowed;
+}
+
+.addButton:hover:not(:disabled) {
+    background-color: #0056b3;
+}
+
+.itemsGrid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+    flex: 2;
+}
+
+.itemCard {
+    background-color: #f8f9fa;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+}
+
+.itemCard:hover {
+    transform: translateY(-5px);
+}
+
+.itemDetails {
+    margin-bottom: 20px;
+}
+
+.itemName {
+    font-size: 1.5em;
+    margin-bottom: 10px;
+}
+
+.itemAmount {
+    font-size: 1.2em;
+    color: #555;
+}
+
+.buttonGroup {
+    display: flex;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.cartContainer {
+    flex: 1;
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    height: fit-content;
+}
+
+.cartTitle {
+    font-size: 1.8em;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.emptyCart {
+    text-align: center;
+    color: #888;
+}
+
+.cartList {
+    list-style-type: none;
+    padding: 0;
+}
+
+.cartItem {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 0;
+    border-bottom: 1px solid #ddd;
+}
+
+.deleteButton {
+    padding: 5px;
+    background-color: #dc3545;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.deleteButton:hover {
+    background-color: #c82333;
+}
