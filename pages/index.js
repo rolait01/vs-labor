@@ -12,7 +12,7 @@ export default function ShoppingApp() {
     useEffect(() => {
         const fetchItems = async () => {
             try {
-                const response = await axios.get('/api/shopping');
+                const response = await axios.get(process.env.API_URL || '/api/shopping');
                 setItems(response.data);
             } catch (error) {
                 console.error('Error fetching items:', error);
@@ -57,7 +57,7 @@ export default function ShoppingApp() {
         const newItem = { name: selectedItemName, amount: selectedItemAmount };
 
         try {
-            const response = await axios.post('/api/shopping', newItem);
+            const response = await axios.post(process.env.API_URL || '/api/shopping', newItem);
             setItems([...items, response.data]);
             setSelectedItemName('');
             setSelectedItemAmount(1);
@@ -69,7 +69,7 @@ export default function ShoppingApp() {
     // Update an item in the shopping list
     const updateItem = async (name, updatedAmount) => {
         try {
-            const response = await axios.put(`/api/shopping/${name}`, { amount: updatedAmount });
+            const response = await axios.put(`${process.env.API_URL || '/api/shopping'}/${name}`, { amount: updatedAmount });
             if (response.status === 200) {
                 setItems(items.map(item =>
                     item.name === name ? { ...item, amount: updatedAmount } : item
@@ -83,7 +83,7 @@ export default function ShoppingApp() {
     // Delete an item from the shopping list
     const deleteItem = async (name) => {
         try {
-            await axios.delete(`/api/shopping/${name}`);
+            await axios.delete(`${process.env.API_URL || '/api/shopping'}/${name}`);
             setItems(items.filter(item => item.name !== name));
         } catch (error) {
             console.error('Error deleting item:', error);

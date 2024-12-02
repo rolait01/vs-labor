@@ -1,0 +1,36 @@
+﻿version: '3.8'
+services:
+  shoppingdb:  # PostgreSQL-Datenbank
+    image: postgres
+    environment:
+      POSTGRES_USER: hse24
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: shoppingdb
+    ports:
+      - "5432:5432"
+    volumes:
+      - shoppingdb-data:/var/lib/postgresql/data  # Persistenz für Daten
+
+  shopping-backend:  # Dein Backend-Service (verwende den korrekten Namen des Images)
+    build:
+      context: ./backend  # Wenn dein Backend im Ordner "backend" ist
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://shoppingdb:5432/shoppingdb
+      SPRING_DATASOURCE_USERNAME: hse24
+      SPRING_DATASOURCE_PASSWORD: password
+    depends_on:
+      - shoppingdb
+    ports:
+      - "8080:8080"
+
+  shopping-frontend:  # Dein Next.js Frontend
+    build: .
+    environment:
+      API_URL: "http://shopping-backend:8080/api/shopping"  # Verweis auf das Backend
+    ports:
+      - "3000:3000"
+    depends_on:
+      - shopping-backend
+
+volumes:
+  shoppingdb-data:  # Für die Persistenz der Datenbankdaten
