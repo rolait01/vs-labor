@@ -12,14 +12,13 @@ services:
       - shoppingdb-data:/var/lib/postgresql/data  # Persistenz für Daten
 
   shopping-backend:  # Dein Backend-Service (verwende den korrekten Namen des Images)
-    build:
-      context: ./backend  # Wenn dein Backend im Ordner "backend" ist
+    image: maeddes/backendspringboot:hse24
+    #build:
+    #  context: ./backend  # Wenn dein Backend im Ordner "backend" ist
     environment:
       SPRING_DATASOURCE_URL: jdbc:postgresql://shoppingdb:5432/shoppingdb
       SPRING_DATASOURCE_USERNAME: hse24
       SPRING_DATASOURCE_PASSWORD: password
-    depends_on:
-      - shoppingdb
     ports:
       - "8080:8080"
 
